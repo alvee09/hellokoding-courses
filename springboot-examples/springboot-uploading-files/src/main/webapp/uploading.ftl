@@ -7,8 +7,15 @@
 
     <body onload="updateSize();">
         <form name="uploadingForm" enctype="multipart/form-data" action="/" method="POST">
+            <p>Upload Invoice:</p>
             <p>
                 <input id="fileInput" type="file" name="uploadingFiles" onchange="updateSize();" multiple>
+                selected files: <span id="fileNum">0</span>;
+                total size: <span id="fileSize">0</span>
+            </p>
+            <p>Upload Packing List:</p>
+            <p>
+                <input id="fileInput" type="file" name="uploadingInvoices" onchange="updateSize();" multiple>
                 selected files: <span id="fileNum">0</span>;
                 total size: <span id="fileSize">0</span>
             </p>
@@ -16,7 +23,7 @@
                 <input type="submit" value="Upload files">
             </p>
         </form>
-        <div>
+        <div hidden>
             <div>Uploaded files:</div>
             <#list files as file>
             <div>
@@ -26,6 +33,7 @@
         </div>
         <script>
             function updateSize() {
+                console.log("onchange")
                 var nBytes = 0,
                         oFiles = document.getElementById("fileInput").files,
                         nFiles = oFiles.length;
